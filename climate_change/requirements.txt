@@ -1,0 +1,20 @@
+django
+djangorestframework
+psycopg2
+#uwsgi
+#matplotlib # Too big to download.
+#scipy # Too big to download.
+Pillow # Too big to download.
+#numpy # Too big to download.
+#pandas 
+django-sslserver
+pytz
+#mysqlclient # I dont use this recently
+#mysql-connector-python  # I dont use this recently
+pyopenssl
+pycrypto
+base58
+channels
+django-cors-headers
+requests
+bs4

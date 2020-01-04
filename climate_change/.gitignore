@@ -29,6 +29,11 @@ MANIFEST
 
 # Sensitive File
 params.py
+settings.py
+urls.py
+
+# Migrations
+migrations/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

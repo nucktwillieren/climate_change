@@ -34,7 +34,23 @@ def send_inline_keyboard(chat_id, text, keyboard):
         "chat_id": chat_id,
         "text": text,
         "reply_markup": {
+            'remove_keyboard': True,
             "inline_keyboard": keyboard
+        }
+    }
+
+    post(data)
+
+def send_keyboard(chat_id, text, keyboard):
+    data = {
+        "chat_id": chat_id,
+        "text": text,
+        "reply_markup": {
+            "one_time_keyboard": True,
+            "keyboard": [
+                [{'text':'test'}],
+                [{'text':'test'}]
+            ]
         }
     }
 
@@ -48,6 +64,3 @@ def send_message(chat_id,text):
     }
 
     post(data)
-
-    
-    

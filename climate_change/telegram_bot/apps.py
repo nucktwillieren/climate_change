@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ApiKernelConfig(AppConfig):
-    name = 'api_kernel'
+class TelegramBotConfig(AppConfig):
+    name = 'telegram_bot'
