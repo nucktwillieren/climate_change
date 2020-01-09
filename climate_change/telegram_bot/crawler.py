@@ -1,9 +1,12 @@
 from bs4 import BeautifulSoup as bs
 import requests
 import json
+import ast
 
 target = 'https://enews.epa.gov.tw/Page/B514A5023133ED27'
 source = 'https://enews.epa.gov.tw/'
+
+help_target = 'https://www.cwb.gov.tw/V8/C/W/W50_index.html'
 
 def get_list():
     r = requests.get(url=target)
@@ -29,5 +32,20 @@ def get_list():
     #print(news_list)
     return news_list
 
+def get_help():
+    r = requests.get(url='https://www.cwb.gov.tw/Data/js/fcst/W50_Data.js?')
+    r.encoding = 'utf-8'
+    helper = r.text.replace('var W50_County=','')
+    helper_dict = ast.literal_eval(helper)['W50']
+    
+    content = "\n\n".join(helper_dict["Content"])
+    content = "*{}* \n\n".format(helper_dict["Title"]) + content
+    content = content + " \n\n更新時間：" + helper_dict["DataTime"]
+
+    #print(helper_dict['Title'])
+    #print(helper_dict['Content'])
+    
+    return content
+
 if __name__ == "__main__":
-    print(get_list())
+    print(get_help())

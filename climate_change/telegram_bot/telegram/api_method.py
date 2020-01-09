@@ -64,3 +64,12 @@ def send_message(chat_id,text):
     }
 
     post(data)
+
+def send_html_message(chat_id,text):
+    data = {
+        "chat_id": chat_id,
+        "text": text,
+        "parse_mode": "HTML",
+    }
+
+    post(data)

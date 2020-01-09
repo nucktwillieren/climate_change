@@ -4,9 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 from .models import TelegramChat, Knowledge, Policy
 from .telegram.api_models import Update
-from .telegram.api_method import send_inline_keyboard, send_message, send_keyboard
+from .telegram.api_method import send_inline_keyboard, send_message, send_keyboard, send_html_message
 from .telegram.params import *
-from .crawler import get_list, target, source
+from .crawler import get_list, target, source, get_help, help_target
 import json
 import random
 import time
@@ -98,7 +98,22 @@ def web_hook(request):
                         ]
                     ]
                 )
-            elif data.message.text == '/push_push_push_push':
+            elif data.message.text == '/push_weather_like_a_god':
+                chat_rooms = TelegramChat.objects.all()
+                helper_content = get_help()
+                for chat_room in chat_rooms:
+                    send_message(chat_room.chat_id, helper_content)
+                    time.sleep(.1)
+
+            elif data.message.text == '/weather':
+                chat_room,_ = TelegramChat.objects.get_or_create(chat_id=data.message.chat_belong_to.id)
+                helper_content = get_help()
+                send_message(
+                    chat_room.chat_id, 
+                    helper_content
+                )
+
+            elif data.message.text == '/push_headline_like_a_god':
                 chat_rooms = TelegramChat.objects.all()
                 news = get_list()[1]
                 for chat_room in chat_rooms:
